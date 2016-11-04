@@ -1,0 +1,86 @@
+// Importamos Bootstrap 4
+$container-max-widths: (
+  sm: 576px,
+  md: 720px,
+  lg: 940px,
+  xl: 1230px
+) !default;
+@import "bootstrap/bootstrap";
+// Importamos fuentes de Google
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,600);
+//paleta de colores
+$h1_color: #025831;
+$title_color:#00C169;
+$subtitle_color:#424242;
+$grey_color:#7082A1;
+$shared_color:#0283DD;
+$primary_action:#FD5C63;
+$second_action:#37E26D;
+$green_input_color:#37E26D;
+$blue_color:#6C7F9F;
+
+//set buttons
+.btn-primary{
+    background-color:$primary_action;
+    border:none;
+    box-shadow: 0 6px 15px rgba($primary_action, .5);
+    font-weight: 200;
+    padding: 10px 46px;
+    transition: all cubic-bezier(0, 0.79, 1, 1) .5s;
+    color:white;
+    &:hover{
+        background-color:darken($primary_action, 8);
+        color:white;
+    }
+    &:active, &:focus,&:active:focus, &:active:hover{
+        background-color:darken($primary_action, 9);
+        box-shadow:none;
+        color:white;
+    }
+}
+.btn-secondary{
+    background-color:$second_action;
+    border:none;
+    box-shadow: 0 6px 15px rgba($second_action, .5);
+    font-weight: 200;
+    padding: 10px 46px;
+    transition: all cubic-bezier(0, 0.79, 1, 1) .5s;
+    color:white;
+    &:hover{
+        background-color:darken($second_action, 8);
+        color:white;
+    }
+    &:active, &:focus,&:active:focus, &:active:hover{
+        background-color:darken($second_action, 9);
+        box-shadow:none;
+        color:white;
+    }
+
+}
+
+
+
+body {
+    font-family: 'Source Sans Pro', sans-serif!important;
+    font-weight: 200;
+    margin: 0;
+    background-size:cover;
+    color: #000;
+}
+.content{
+    max-width: 1011px;
+    margin:0 auto;
+}
+//mixins
+@mixin blurred($color, $blur) {
+    background-color: $color;
+    -webkit-backdrop-filter: saturate(180%) blur($blur);
+    backdrop-filter: saturate(180%) blur($blur);
+    transition: background-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1);
+}
+@mixin inline_block($position){
+    display: inline-block;
+    vertical-align: $position;
+}
+
+//Importamos componentes
