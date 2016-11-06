@@ -44,12 +44,23 @@
                         <a href="#">Mis compras</a>
                     </li>
                     <li>
-                        <a href="/logout/">Salir</a>
+                        <a href="javascript:void(0)" onclick="logout()">Salir</a>
                     </li>
                 {% endif %}
               </ul>
         </div>
         <!-- /#sidebar-wrapper -->
+
+        {# carrito #}
+            <div id="carrito_top">
+                <button id="car" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-shopping-cart" ></i></button>
+                <div class="counter">1</div>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                </div>
+
+            </div>
+        {# carrito #}
     <div id="page-content-wrapper">
     {% block content %}
        
@@ -97,7 +108,6 @@
                           </form>
                       </div>
                     </div>
-                    {{form.errors}}
                 </div>
                 <div class="modal-footer">
                     <div class="caption">
@@ -114,6 +124,7 @@
     <script src="/static/js/tether.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script> 
     <script src="/static/js/main.js"></script> 
+
 
     <script>
     $(document).ready(function(){

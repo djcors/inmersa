@@ -21,8 +21,9 @@ class ImagenAdminForm(forms.ModelForm):
 
 
 class PlatoAdmin(admin.ModelAdmin):
-    list_display = ('usuario','codigo', 'valor', 'activo', )
+    list_display = ('usuario','codigo', 'valor', 'activo','stock', )
     list_filter = ('usuario',)
+    list_editable = ('stock',)
     filter_horizontal = ('fav',)
     fieldsets = [
         [_(u'Informativo'), {

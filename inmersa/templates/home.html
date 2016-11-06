@@ -40,7 +40,7 @@
                                     
                             <div class="row">
                                 <div class="action col-md-4">
-                                    <button type="button" data-toggle="tooltip" title="Comprar" class="btn btn-action cart"><i class="glyphicon glyphicon-shopping-cart" ></i></button>
+                                    <button type="button" data-toggle="tooltip" title="Comprar" class="btn btn-action cart" data-sku="{{plato.codigo}}" onclick="callback_cart('{{plato.codigo}}')" data-value="{{plato.valor}}"><i class="glyphicon glyphicon-shopping-cart" ></i></button>
                                     <div class="info col-md-12">
                                         {{plato.comprados}}
                                     </div>

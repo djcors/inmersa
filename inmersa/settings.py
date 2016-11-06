@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'storages',
     'rest_framework',
     'products_engine',
+    'shop_engine',
 ]
 
 MIDDLEWARE_CLASSES = [
