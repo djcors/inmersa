@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+
+{% block onready %}
+    {{block.super}}
+{% endblock onready %}
+
+
+   {% block content %}
+    <div class="row">
+        <form method="POST" action="{% url "Register" %}" id="register_form">{% csrf_token %}
+        <h4>Formulario de registro</h4>
+            <div class="form-group col-md-12 col-xs-12">
+                <input type="text" name="username" id="id_username" data-toggle="tooltip" data-placement="top" title="No deje espacios ni use caracteres como @, %, $" placeholder="Nombre de usuario" class="form-control" />
+                {% for error in form.username.errors %}
+                    <p class="text-danger small">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <div class="form-group col-md-12 col-xs-12">
+                <input type="password" name="password1" id="id_password1" data-toggle="tooltip" data-placement="top" title="Mínimo 8 caracteres entre letras y números" placeholder="Contraseña" class="form-control" />
+                {% for error in form.password1.errors %}
+                    <p class="text-danger small">{{ error }}</p>
+                {% endfor %}
+
+            </div>
+            <div class="form-group col-md-12 col-xs-12">
+                <input type="password" name="password2" id="id_password2" placeholder="Confirmar Contraseña" class="form-control" />
+                {% for error in form.password2.errors %}
+                    <p class="text-danger small">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <div class="form-group col-md-12 col-xs-12">
+                <button class="btn btn-secondary">Enviar</button>
+                <a href="{% url "home" %}" class="btn btn-primary">Cancelar</a>
+            </div>
+        </form>
+
+    </div>
+
+
+   {% endblock content %}

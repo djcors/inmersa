@@ -5394,13 +5394,107 @@ a.bg-danger:focus, a.bg-danger:hover {
     box-shadow: none;
     color: white; }
 
+.btn-action {
+  background-color: white;
+  border: none;
+  font-weight: 200;
+  padding: 10px 20px;
+  transition: all cubic-bezier(0, 0.79, 1, 1) 0.5s;
+  color: black; }
+  .btn-action:hover {
+    background-color: #1ed257;
+    color: white; }
+  .btn-action:active, .btn-action:focus, .btn-action:active:focus, .btn-action:active:hover {
+    background-color: #1ecd55;
+    box-shadow: none;
+    color: white; }
+  .btn-action.fav:hover {
+    background-color: red; }
+  .btn-action.liked {
+    background-color: red;
+    color: white; }
+  .btn-action.shared:hover {
+    background-color: #0283DD; }
+
 body {
   font-family: "Source Sans Pro", sans-serif !important;
   font-weight: 200;
   margin: 0;
-  background-size: cover;
-  color: #000; }
+  color: #000;
+  overflow-x: hidden; }
 
 .content {
   max-width: 1011px;
   margin: 0 auto; }
+
+#wrapper {
+  padding-left: 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease; }
+
+#wrapper.toggled {
+  padding-left: 250px; }
+
+#sidebar-wrapper {
+  z-index: 1000;
+  position: fixed;
+  width: 250px;
+  height: 100%;
+  margin-left: 0px;
+  overflow-y: auto;
+  background: #000;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease; }
+  #sidebar-wrapper .sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none; }
+    #sidebar-wrapper .sidebar-nav li {
+      text-indent: 20px;
+      line-height: 40px; }
+      #sidebar-wrapper .sidebar-nav li a {
+        display: block;
+        text-decoration: none;
+        color: #999999; }
+        #sidebar-wrapper .sidebar-nav li a:hover {
+          text-decoration: none;
+          color: #fff;
+          background: rgba(255, 255, 255, 0.2); }
+    #sidebar-wrapper .sidebar-nav .sidebar-brand {
+      height: 158px; }
+      #sidebar-wrapper .sidebar-nav .sidebar-brand img {
+        clear: both; }
+
+#page-content-wrapper {
+  width: calc(100% - 250px);
+  position: absolute;
+  padding: 15px;
+  left: 250px; }
+
+.card {
+  position: relative;
+  background: white;
+  clear: both;
+  margin-top: 20px; }
+  .card .card-block {
+    text-align: center;
+    clear: both;
+    background: white; }
+  .card .foto .image {
+    padding: 0; }
+
+.page.blurred {
+  -webkit-filter: blur(10px); }
+
+#register_form {
+  width: calc(70% - 250px);
+  margin-left: 250px;
+  text-align: center;
+  margin-top: 30px; }

@@ -19,6 +19,19 @@ $second_action:#37E26D;
 $green_input_color:#37E26D;
 $blue_color:#6C7F9F;
 
+//mixins
+@mixin blurred($color, $blur) {
+    background-color: $color;
+    -webkit-backdrop-filter: saturate(180%) blur($blur);
+    backdrop-filter: saturate(180%) blur($blur);
+    //transition: background-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1);
+}
+@mixin inline_block($position){
+    display: inline-block;
+    vertical-align: $position;
+}
+
+
 //set buttons
 .btn-primary{
     background-color:$primary_action;
@@ -58,29 +71,145 @@ $blue_color:#6C7F9F;
 
 }
 
+.btn-action{
+    background-color:white;
+    border:none;
+    font-weight: 200;
+    padding: 10px 20px;
+    transition: all cubic-bezier(0, 0.79, 1, 1) .5s;
+    color:black;
+    &:hover{
+        background-color:darken($second_action, 8);
+        color:white;
+    }
+    &:active, &:focus,&:active:focus, &:active:hover{
+        background-color:darken($second_action, 9);
+        box-shadow:none;
+        color:white;
+    }
+    &.fav{
+       &:hover{
+        background-color:red;
+        }
+    }
+    &.liked{
+        background-color:red;
+        color: white;
+    }
+    &.shared{
+       &:hover{
+        background-color:#0283DD;
+        }
+    }
+
+
+}
+
 
 
 body {
     font-family: 'Source Sans Pro', sans-serif!important;
     font-weight: 200;
     margin: 0;
-    background-size:cover;
     color: #000;
+    overflow-x: hidden;
 }
 .content{
     max-width: 1011px;
     margin:0 auto;
 }
-//mixins
-@mixin blurred($color, $blur) {
-    background-color: $color;
-    -webkit-backdrop-filter: saturate(180%) blur($blur);
-    backdrop-filter: saturate(180%) blur($blur);
-    transition: background-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1);
+
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }
-@mixin inline_block($position){
-    display: inline-block;
-    vertical-align: $position;
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    margin-left: 0px;
+    overflow-y: auto;
+    background: #000;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    .sidebar-nav {
+        position: absolute;
+        top: 0;
+        width: 250px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        li {
+            text-indent: 20px;
+            line-height: 40px;
+            a {
+                display: block;
+                text-decoration: none;
+                color: #999999;
+                &:hover {
+                    text-decoration: none;
+                    color: #fff;
+                    background: rgba(255,255,255,0.2);
+                }
+            }
+        }
+        .sidebar-brand {
+            height: 158px;
+            img{
+                clear: both;
+            }
+        }
+    }
+}
+
+#page-content-wrapper {
+    width: calc(100% - 250px);
+    position: absolute;
+    padding: 15px;
+    left: 250px;
+}
+
+.card{
+    position:relative;
+    background:white;
+    clear: both;
+    margin-top: 20px;
+    .card-block{
+        text-align: center;
+        clear: both;
+        background:white;
+    }
+    .foto{
+        .image{
+            padding:0;
+        }
+    }
+}
+
+.page{
+    &.blurred{
+      -webkit-filter: blur(10px);  
+    }
+}
+
+//registro
+#register_form{
+    width: calc(70% - 250px);
+    margin-left:250px;
+    text-align: center;
+    margin-top: 30px;
 }
 
 //Importamos componentes

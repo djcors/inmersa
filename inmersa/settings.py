@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'storages',
     'rest_framework',
+    'products_engine',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -156,13 +157,15 @@ SUIT_CONFIG = {
 }
 
 
-STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_PATH, 'static')
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_DIRS = [
+    #os.path.join(BASE_PATH, 'static'),
+
+]
 STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_PATH, 'media')
 MEDIA_URL = '/media/'
-
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 #date formats
 DATE_FORMAT = 'j F Y'
 TIME_FORMAT = 'H:i'

@@ -5,17 +5,115 @@
     <meta charset="UTF-8">
     <title>Tienda</title>
     <link rel="stylesheet" href="/static/css/main.css">
+
 </head>
 <body>
-    <header>header</header> 
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.8&appId=1152188968138261";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+    <div class="page {% if not request.user.is_authenticated and not "/registro/" in request.META.PATH_INFO %}blurred{% endif %}">
+    <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        <img src="/static/images/logo.png" alt="" class="col-md-12">
+                    </a>
+                </li>
+                {% if request.user.is_authenticated %}
+                    <li>
+                        <form class="form-inline">
+                          <div class="form-group">
+
+                              
+                              <input type="text" class="form-control" id="exampleInputAmount" placeholder="Buscar">
+
+                          </div>
+                          
+                        </form>
+                    </li>
+                    <li>
+                        <a href="{% url "home" %}">Ver platos</a>
+                    </li>
+                    <li>
+                        <a href="#">Mis compras</a>
+                    </li>
+                    <li>
+                        <a href="/logout/">Salir</a>
+                    </li>
+                {% endif %}
+              </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+    <div id="page-content-wrapper">
     {% block content %}
        
     {% endblock content %}
-    <footer>footer</footer>
+    </div>
+</div>
+
+    {% if not request.user.is_authenticated %}
+    <div id="login" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    {% if request.GET.login == "false" %}
+                        <div id="login_false" class="alert alert-danger alert-dismissible fade in" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <strong>Oups!</strong> Algo salío mal, intenta de nuevo.
+                        </div>
+                    {% endif %}
+
+                    <h4 class="modal-title" id="gridModalLabel">Inicia sesión</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid bd-example-row">
+                      <div class="row">
+                          <form action="{% url "Login" %}" method="POST">{% csrf_token %}
+                              <div class="form-group">
+                                <input type="text" class="form-control" name="username" id="id_username" placeholder="Usuario">
+                                {% for error in form.username.errors %}
+                                    <p class="text-danger small">{{ error }}</p>
+                                {% endfor %}
+
+                              </div>
+                              <div class="form-group">
+                                <input type="password" name="password" class="form-control" id="id_password"  placeholder="Contraseña">
+                                {% for error in form.password.errors %}
+                                    <p class="text-danger small">{{ error }}</p>
+                                {% endfor %}
+
+                              </div>
+                              <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Entrar</button>
+                              </div>
+                          </form>
+                      </div>
+                    </div>
+                    {{form.errors}}
+                </div>
+                <div class="modal-footer">
+                    <div class="caption">
+                        <p>¿No está registrado? Haga <a href="{% url 'Register' %}">Click aquí</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
     <script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
     <script src="/static/js/jquery-ui.min.js"></script>
     <script src="/static/js/tether.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script> 
+    <script src="/static/js/main.js"></script> 
 
     <script>
     $(document).ready(function(){
