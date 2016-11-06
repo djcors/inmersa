@@ -13,17 +13,21 @@ from django.contrib.auth.models import User
 from django.views.generic import TemplateView
 from django.template.response import TemplateResponse
 from django.template import RequestContext
+from shop_engine.models import Compra
 
 def HomeView(request):
     if request.user.is_authenticated():
-        url = "http://localhost:8000/api/platos"
+        url = "http://localhost:8000/api/platos/"
         headers = {'Accept':'application/json'} 
         r = requests.get(url, headers=headers)
         recibe = r.json()
+        todos_platos = []
         for plato in recibe:
             for fav in plato["fav"]:
                 if request.user.username == fav["username"]:
+                    todos_platos.append(plato)
                     plato['liked'] = True
+        request.session.update({'likes':todos_platos})
         response = render(request, "home.html", {'platos':recibe,})
         return response
     else:
@@ -63,4 +67,11 @@ def LogIn(request):
             return redirect('/')
     else:
         return redirect('/?login=false')
+
+def miscompras(request):
+    if request.user.is_authenticated():
+        compras = Compra.objects.filter(usuario=request.user)
+        return render(request, 'miscompras.html', {'compras':compras})  
+
+    return redirect('home')  
 

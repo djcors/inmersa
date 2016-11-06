@@ -16,14 +16,10 @@
 
    {% block content %}
     <div class="card-columns">
-
-        
-
-
         {% for plato in platos %}
             {% if plato.stock %}
 
-                    <div class="card">
+                    <div class="card" data-code="{{plato.codigo}}">
                         <div class="card-block">
                             <h4 class="card-title">{{plato.nombre}}</h4>
                             <h6 class="card-subtitle text-muted">${{plato.valor}}</h6>
@@ -41,7 +37,7 @@
                             <div class="row">
                                 <div class="action col-md-4">
                                     <button type="button" data-toggle="tooltip" title="Comprar" class="btn btn-action cart" data-sku="{{plato.codigo}}" onclick="callback_cart('{{plato.codigo}}')" data-value="{{plato.valor}}"><i class="glyphicon glyphicon-shopping-cart" ></i></button>
-                                    <div class="info col-md-12">
+                                    <div class="info col-md-12" data-toggle="tooltip" title="Usuarios que han comprado" data-placement="bottom">
                                         {{plato.comprados}}
                                     </div>
                                 </div>

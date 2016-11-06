@@ -36,4 +36,5 @@ class Plato(models.Model):
     @property
     def activa(self):
         return self.activo
+    
 

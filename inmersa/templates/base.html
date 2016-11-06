@@ -27,21 +27,19 @@
                 </li>
                 {% if request.user.is_authenticated %}
                     <li>
+                        {% if platos %}
                         <form class="form-inline">
                           <div class="form-group">
-
-                              
-                              <input type="text" class="form-control" id="exampleInputAmount" placeholder="Buscar">
-
+                              <input type="text" class="form-control" id="busqueda" placeholder="Buscar">
                           </div>
-                          
                         </form>
+                        {% endif %}
                     </li>
                     <li>
-                        <a href="{% url "home" %}">Ver platos</a>
+                        <a href="{% url "home" %}">Comprar</a>
                     </li>
                     <li>
-                        <a href="#">Mis compras</a>
+                        <a href="{% url "miscompras" %}">Mis compras</a>
                     </li>
                     <li>
                         <a href="javascript:void(0)" onclick="logout()">Salir</a>

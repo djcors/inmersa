@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^api/', include(shop_urls)),
     url(r'^$', 'inmersa.views.HomeView', name='home'),
     url(r'^registro/$', 'inmersa.views.Register', name="Register"),
+    url(r'^miscompras/$', 'inmersa.views.miscompras', name="miscompras"),
     url(r'^login/$', 'inmersa.views.LogIn', name="Login"),
     url(r'^logout/$', 'django.contrib.auth.views.logout',{'next_page': 'home'})
 

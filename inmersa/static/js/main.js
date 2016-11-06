@@ -30,6 +30,23 @@ $(document).ready(function(){
         });
  
     });
+    //search filter
+    $("#busqueda").keyup(function(){
+ 
+        var filter = $(this).val(), count = 0;
+ 
+        $(".card-columns .card").each(function(){
+ 
+            if ($(this).find('.card-title').text().search(new RegExp(filter, "i")) < 0) {
+                $(this).fadeOut();
+ 
+            } else {
+                $(this).show();
+                count++;
+            }
+        });
+ 
+    });
 });
 
 function get_items_to_localstorage(){

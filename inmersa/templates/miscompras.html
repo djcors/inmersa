@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if compras %}
+       <h4>Mis compras</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th># de orden</th>
+                    <th>Nombre</th>
+                    <th>Valor</th>
+                    <th>Vendedor</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for compra in compras %}
+                    <tr>
+                        <th scope="row">{{compra.identificador}}</th>
+                        <td>{{compra.plato.nombre}}</td>
+                        <td>{{compra.plato.valor}}</td>
+                        <td>{{compra.plato.usuario.username}}</td>
+                    </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+ 
+    {% endif %}
+    
+{% if request.session.likes %}
+  <h4>Mis Favoritos</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Valor</th>
+                <th>Vendedor</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for plato in request.session.likes %}
+                <tr>
+                    <th scope="row">{{plato.codigo}}</th>
+                    <td>{{plato.nombre}}</td>
+                    <td>{{plato.valor}}</td>
+                    <td>{{plato.usuario.username}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+
+
+{% endblock %}
