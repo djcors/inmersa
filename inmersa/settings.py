@@ -108,8 +108,6 @@ DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']
 
-<<<<<<< HEAD
-=======
 #DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -121,7 +119,6 @@ ALLOWED_HOSTS = ['*']
 #    },
 #}
 
->>>>>>> 892cdc982e952cd713f7dc5e6e129fe23f0ac8d0
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
