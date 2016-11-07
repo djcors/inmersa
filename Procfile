@@ -1,0 +1,1 @@
+web: gunicorn inmersa.wsgi --log-file -
