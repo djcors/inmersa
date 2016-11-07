@@ -3,8 +3,8 @@
 {% block content %}
     {% if compras %}
        <h4>Mis compras</h4>
-        <table class="table">
-            <thead>
+        <table class="table table-bordered table-hover">
+            <thead class="thead-inverse">
                 <tr>
                     <th># de orden</th>
                     <th>Nombre</th>
@@ -29,8 +29,8 @@
     
 {% if request.session.likes %}
   <h4>Mis Favoritos</h4>
-    <table class="table">
-        <thead>
+    <table class="table table-bordered table-hover">
+        <thead class="thead-inverse">
             <tr>
                 <th>Codigo</th>
                 <th>Nombre</th>
