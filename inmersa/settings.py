@@ -183,6 +183,15 @@ SUIT_CONFIG = {
 }
 
 
+AWS_S3_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY')
+AWS_S3_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = 'inmersa'
+SECRET_KEY = 'A long string with many different types of characters'
+
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+
 STATIC_ROOT = os.path.join(BASE_PATH, 'static')
 STATICFILES_DIRS = [
     #os.path.join(BASE_PATH, 'static'),
