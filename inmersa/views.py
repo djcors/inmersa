@@ -4,6 +4,7 @@ import simplejson
 import requests
 import datetime
 from django import http
+from django.conf import settings
 from django.http import HttpResponseNotAllowed, HttpResponseNotFound, HttpResponse, HttpResponseForbidden, HttpResponseRedirect, JsonResponse
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect, render_to_response
@@ -17,7 +18,7 @@ from shop_engine.models import Compra
 
 def HomeView(request):
     if request.user.is_authenticated():
-        url = "http://localhost:8000/api/platos/"
+        url = settings.URL_API + "/api/platos/"
         headers = {'Accept':'application/json'} 
         r = requests.get(url, headers=headers)
         recibe = r.json()

@@ -216,6 +216,8 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
+URL_API = "http://inmersa.corsdev.co/"
+
 try:
     from .local_settings import *
 except ImportError:
