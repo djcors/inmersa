@@ -29,3 +29,4 @@ whitenoise
 boto
 django-boto
 django-storages
+dj-database-url

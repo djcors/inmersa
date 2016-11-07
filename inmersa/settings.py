@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+import dj_database_url
 import psycopg2
 from django.utils.translation import ugettext_lazy as _
 
@@ -28,7 +29,8 @@ SECRET_KEY = '03=s9^=&*5me1w%rzqsjc&yl7ra!+0vnrb+eqn4vgzj1wk&6%b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost"]
+ALLOWED_HOSTS = ["localhost", "inmersa.herokuapp.com"]
+ADMINS = [('Jonathan Cortes', 'djcors@gmail.com')]
 
 
 # Application definition
@@ -83,16 +85,39 @@ WSGI_APPLICATION = 'inmersa.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'inmersa',
-        'USER': 'inmersa157',
-        'PASSWORD': 'pkay78KuysU]^cd',
-        'HOST': 'localhost',
-        'PORT': '',
-    },
+        'USER': 'inmersa',
+        'PASSWORD': 'Ewd-APM-T4C-CtD',
+        'HOST': 'testinmersa1.clr9lus1fmqn.us-east-1.rds.amazonaws.com',
+        'PORT': '5432',
+    }
+
 }
+
+
+
+db_from_env = dj_database_url.config(conn_max_age=1000)
+DATABASES['default'] =  dj_database_url.config()
+DATABASES['default'] =  dj_database_url.config(default='postgres://inmersa:Ewd-APM-T4C-CtD@testinmersa1.clr9lus1fmqn.us-east-1.rds.amazonaws.com:5432/inmersa')
+DATABASES['default'].update(db_from_env)
+DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+ALLOWED_HOSTS = ['*']
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'inmersa',
+#        'USER': 'inmersa157',
+#        'PASSWORD': 'pkay78KuysU]^cd',
+#        'HOST': 'localhost',
+#        'PORT': '',
+#    },
+#}
 
 
 # Password validation

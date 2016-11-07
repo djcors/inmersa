@@ -5488,7 +5488,20 @@ body {
     clear: both;
     background: white; }
   .card .foto .image {
-    padding: 0; }
+    padding: 0;
+    width: 100%; }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .card-columns {
+    column-count: 3; } }
+
+@media (min-width: 1200px) {
+  .card-columns {
+    column-count: 3; } }
+
+@media (min-width: 544px) and (max-width: 767px) {
+  .card-columns {
+    column-count: 2; } }
 
 .page.blurred {
   -webkit-filter: blur(10px); }
