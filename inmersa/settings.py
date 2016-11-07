@@ -27,7 +27,7 @@ BASE_PATH = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = '03=s9^=&*5me1w%rzqsjc&yl7ra!+0vnrb+eqn4vgzj1wk&6%b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["localhost", "inmersa.herokuapp.com"]
 ADMINS = [('Jonathan Cortes', 'djcors@gmail.com')]
@@ -107,17 +107,6 @@ DATABASES['default'].update(db_from_env)
 DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']
-
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#        'NAME': 'inmersa',
-#        'USER': 'inmersa157',
-#        'PASSWORD': 'pkay78KuysU]^cd',
-#        'HOST': 'localhost',
-#        'PORT': '',
-#    },
-#}
 
 
 # Password validation
@@ -206,4 +195,9 @@ FIRST_DAY_OF_WEEK = 1
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
 
