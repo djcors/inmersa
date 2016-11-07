@@ -67,7 +67,7 @@
 
             {% endif %}
         {% empty %}
-
+            {% if not request.user.is_authenticated %}
         
             {% for x in "123456" %}
                 <div class="card">
@@ -109,6 +109,7 @@
                 </div>
             </div>
             {% endfor %}
+            {% endif %}
             
 
         {% endfor %}
