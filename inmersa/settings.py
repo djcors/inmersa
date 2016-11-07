@@ -99,15 +99,8 @@ DATABASES = {
 }
 
 
-AWS_S3_ACCESS_KEY_ID = 'AKIAJEX4EPYR4WELT7MQ'
-AWS_S3_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'inmersa'
 
-
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-
-
-db_from_env = dj_database_url.config(conn_max_age=500)
+db_from_env = dj_database_url.config(conn_max_age=1000)
 DATABASES['default'] =  dj_database_url.config()
 DATABASES['default'] =  dj_database_url.config(default='postgres://inmersa:Ewd-APM-T4C-CtD@testinmersa1.clr9lus1fmqn.us-east-1.rds.amazonaws.com:5432/inmersa')
 DATABASES['default'].update(db_from_env)
