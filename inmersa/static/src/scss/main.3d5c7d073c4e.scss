@@ -1,0 +1,265 @@
+// Importamos Bootstrap 4
+$container-max-widths: (
+  sm: 576px,
+  md: 720px,
+  lg: 940px,
+  xl: 1230px
+) !default;
+@import "bootstrap/bootstrap";
+// Importamos fuentes de Google
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,600);
+//paleta de colores
+$h1_color: #025831;
+$title_color:#00C169;
+$subtitle_color:#424242;
+$grey_color:#7082A1;
+$shared_color:#0283DD;
+$primary_action:#FD5C63;
+$second_action:#37E26D;
+$green_input_color:#37E26D;
+$blue_color:#6C7F9F;
+
+//mixins
+@mixin blurred($color, $blur) {
+    background-color: $color;
+    -webkit-backdrop-filter: saturate(180%) blur($blur);
+    backdrop-filter: saturate(180%) blur($blur);
+    //transition: background-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1);
+}
+@mixin inline_block($position){
+    display: inline-block;
+    vertical-align: $position;
+}
+
+
+//set buttons
+.btn-primary{
+    background-color:$primary_action;
+    border:none;
+    box-shadow: 0 6px 15px rgba($primary_action, .5);
+    font-weight: 200;
+    padding: 10px 46px;
+    transition: all cubic-bezier(0, 0.79, 1, 1) .5s;
+    color:white;
+    &:hover{
+        background-color:darken($primary_action, 8);
+        color:white;
+    }
+    &:active, &:focus,&:active:focus, &:active:hover{
+        background-color:darken($primary_action, 9);
+        box-shadow:none;
+        color:white;
+    }
+}
+.btn-secondary{
+    background-color:$second_action;
+    border:none;
+    box-shadow: 0 6px 15px rgba($second_action, .5);
+    font-weight: 200;
+    padding: 10px 46px;
+    transition: all cubic-bezier(0, 0.79, 1, 1) .5s;
+    color:white;
+    &:hover{
+        background-color:darken($second_action, 8);
+        color:white;
+    }
+    &:active, &:focus,&:active:focus, &:active:hover{
+        background-color:darken($second_action, 9);
+        box-shadow:none;
+        color:white;
+    }
+
+}
+
+.btn-action{
+    background-color:white;
+    border:none;
+    font-weight: 200;
+    padding: 10px 20px;
+    transition: all cubic-bezier(0, 0.79, 1, 1) .5s;
+    color:black;
+    &:hover{
+        background-color:darken($second_action, 8);
+        color:white;
+    }
+    &:active, &:focus,&:active:focus, &:active:hover{
+        background-color:darken($second_action, 9);
+        box-shadow:none;
+        color:white;
+    }
+    &.fav{
+       &:hover{
+        background-color:red;
+        }
+    }
+    &.liked{
+        background-color:red;
+        color: white;
+    }
+    &.shared{
+       &:hover{
+        background-color:#0283DD;
+        }
+    }
+
+
+}
+
+
+
+body {
+    font-family: 'Source Sans Pro', sans-serif!important;
+    font-weight: 200;
+    margin: 0;
+    color: #000;
+    overflow-x: hidden;
+}
+.content{
+    max-width: 1011px;
+    margin:0 auto;
+}
+
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    margin-left: 0px;
+    overflow-y: auto;
+    background: #000;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    .sidebar-nav {
+        position: absolute;
+        top: 0;
+        width: 250px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        li {
+            text-indent: 20px;
+            line-height: 40px;
+            a {
+                display: block;
+                text-decoration: none;
+                color: #999999;
+                &:hover {
+                    text-decoration: none;
+                    color: #fff;
+                    background: rgba(255,255,255,0.2);
+                }
+            }
+        }
+        .sidebar-brand {
+            height: 158px;
+            img{
+                clear: both;
+            }
+        }
+    }
+}
+
+#page-content-wrapper {
+    width: calc(100% - 250px);
+    position: absolute;
+    padding: 15px;
+    left: 250px;
+}
+
+.card{
+    position:relative;
+    background:white;
+    clear: both;
+    margin-top: 20px;
+    .card-block{
+        text-align: center;
+        clear: both;
+        background:white;
+    }
+    .foto{
+        .image{
+            padding:0;
+            width: 100%;
+        }
+    }
+}
+.card-columns {
+  @include media-breakpoint-only(lg) {
+    column-count: 3;
+  }
+  @include media-breakpoint-only(xl) {
+    column-count: 3;
+  }
+  @include media-breakpoint-only(sm) {
+    column-count: 2;
+  }
+
+}
+
+.page{
+    &.blurred{
+      -webkit-filter: blur(10px);  
+    }
+}
+
+//registro
+#register_form{
+    width: calc(70% - 250px);
+    margin-left:250px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+//carrito
+#carrito_top{
+    display: none;
+    position:fixed;
+    right: 30px;
+    top:30px;
+    z-index: 3;
+    #car{
+        border:none;
+        padding: 11px 15px 7px 15px;
+        border-radius:100%; 
+        background:$second_action;
+        color: white;
+        box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+        font-size: 1.5em;
+    }
+    .dropdown-menu{
+        right: 0;
+        left: inherit;
+    }
+    .comprar{
+        width: 70%;
+        text-align: center;
+        padding: 5px;
+        margin-left: 20px
+    }
+    .counter{
+        position: absolute;
+        z-index: 4;
+        top: 30px;
+        right: -5px;
+        background: $primary_action;
+        color: white;
+        padding: 2px 9px;
+        border-radius: 100%;
+        font-weight: 600;
+    }
+}
