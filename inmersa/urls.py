@@ -27,7 +27,10 @@ urlpatterns = [
     url(r'^api/', include(shop_urls)),
     url(r'^$', 'inmersa.views.HomeView', name='home'),
     url(r'^registro/$', 'inmersa.views.Register', name="Register"),
-    url(r'^miscompras/$', 'inmersa.views.miscompras', name="miscompras"),
+    url(r'^mis-compras/$', 'inmersa.views.miscompras', name="miscompras"),
+    url(r'^mis-platos/$', 'inmersa.views.misplatos', name="misplatos"),
+    url(r'^plato/(?P<codigo>[\w-]+)/$', 'inmersa.views.plato', name="plato"),
+    url(r'^mis-platos/crear-plato$', 'inmersa.views.crear_plato', name="crearplato"),
     url(r'^login/$', 'inmersa.views.LogIn', name="Login"),
     url(r'^logout/$', 'django.contrib.auth.views.logout',{'next_page': 'home'})
 

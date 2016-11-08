@@ -22,5 +22,6 @@ class PlatoSerializer(serializers.ModelSerializer):
             'descripcion', 'ingredientes', 'calorias', 'grasa','zona',
             'foto','fav','shared', 'comprados','stock','pk')
 
+
     
             

@@ -15,10 +15,11 @@ from django.views.generic import TemplateView
 from django.template.response import TemplateResponse
 from django.template import RequestContext
 from shop_engine.models import Compra
+from products_engine.models import Plato
 
 def HomeView(request):
     if request.user.is_authenticated():
-        url = settings.URL_API + "/api/platos/"
+        url = settings.URL_API + "api/platos/"
         headers = {'Accept':'application/json'} 
         r = requests.get(url, headers=headers)
         recibe = r.json()
@@ -33,6 +34,15 @@ def HomeView(request):
         return response
     else:
         return render(request, 'home.html', {})
+
+def plato(request, codigo):
+    if request.user.is_authenticated():
+        url = settings.URL_API + "api/platos/?codigo="+codigo
+        headers = {'Accept':'application/json'} 
+        r = requests.get(url, headers=headers)
+        recibe = r.json()
+
+    return render(request, 'home.html', {'platos':recibe})
 
 
 def Register(request):
@@ -75,4 +85,34 @@ def miscompras(request):
         return render(request, 'miscompras.html', {'compras':compras})  
 
     return redirect('home')  
+
+def misplatos(request):
+    if request.user.is_authenticated():
+        platos = Plato.objects.filter(usuario=request.user)
+        return render(request, 'misplatos.html', {'platos':platos}) 
+    return redirect('home')
+
+def crear_plato(request):
+    if request.user.is_authenticated():
+
+        if request.method == 'POST':
+            print('------')
+            plato = Plato.objects.create(
+                usuario=request.user,
+                codigo=request.POST['codigo'],
+                nombre=request.POST['nombre'],
+                valor=request.POST['valor'],
+                activo=request.POST['activo'],
+                descripcion=request.POST['descripcion'],
+                calorias=request.POST['calorias'],
+                grasa=request.POST['grasa'],
+                zona=request.POST['zona'],
+                foto=request.FILES['foto'],
+                ingredientes=request.POST['ingredientes'],
+                stock=request.POST['stock'],
+            )
+            plato.save()
+            return render(request, 'crear_plato.html', {'status':'ok'})
+        return render(request, 'crear_plato.html', {})
+    return redirect('home')
 

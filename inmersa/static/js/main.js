@@ -1,7 +1,7 @@
 var array = new Array()
 var listado_carrito = [];
 var codes = new Array()
-
+var token;
 $(document).ready(function(){
   get_items_to_localstorage();
     $('.fav').click(function(){
@@ -47,6 +47,17 @@ $(document).ready(function(){
         });
  
     });
+    jQuery.get("https://graph.facebook.com/oauth/access_token", {
+        'grant_type': "client_credentials",
+        'client_id': "1259086174112919",
+        'client_secret': "fdae896d5d6b97476fe324a1a28c7201"
+    }, function (data) {
+        token = data.split('=')
+        token = token[1]
+        console.log(token)
+    });
+
+    login_status();
 });
 
 function get_items_to_localstorage(){
@@ -190,8 +201,28 @@ function comprar(){
         }
         
     });
-
-
 }
+
+function login_status(){
+    FB.getLoginStatus(function(response) {
+      if (response.status === 'connected') {
+       token = response.authResponse.accessToken
+      }
+      else {
+      }
+    });
+}
+
+function share(item){
+  url = "http://inmersa.corsdev.co/plato/"+item
+  FB.ui({
+    method: 'share',
+    display: 'popup',
+    href: url,
+  }, function(response){
+
+  });
+}
+
 
 

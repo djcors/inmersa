@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if platos %}
+       <h4>Mis platos</h4>
+        <table class="table table-bordered table-hover">
+            <thead class="thead-inverse">
+                <tr>
+                    <th>codigo</th>
+                    <th>Nombre</th>
+                    <th>Valor</th>
+                    <th>Vendidos</th>
+                    <th>Stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for plato in platos %}
+                    <tr>
+                        <th scope="row">{{plato.codigo}}</th>
+                        <td>{{plato.nombre}}</td>
+                        <td>{{plato.valor}}</td>
+                        <td>{{plato.comprados}}</td>
+                        <td>{{plato.stock}}</td>
+                    </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="foot">
+            <a href="{% url "crearplato" %}" class="btn btn-primary">Crear plato</a>
+        </div>
+ 
+    {% endif %}
+
+
+
+{% endblock %}
