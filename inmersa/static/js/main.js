@@ -54,10 +54,7 @@ $(document).ready(function(){
     }, function (data) {
         token = data.split('=')
         token = token[1]
-        console.log(token)
     });
-
-    login_status();
 });
 
 function get_items_to_localstorage(){
@@ -189,7 +186,6 @@ function comprar(){
   data = {'datos':codes}
   $.post( "/api/comprar/", data)
       .done(function( data, statusText, xhr ) {
-        console.log(statusText )
         if(statusText == "success"){
             setTimeout(function(){
                 localStorage.clear();
