@@ -29,7 +29,7 @@ SECRET_KEY = '03=s9^=&*5me1w%rzqsjc&yl7ra!+0vnrb+eqn4vgzj1wk&6%b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["localhost", "inmersa.herokuapp.com"]
+ALLOWED_HOSTS = ["localhost", "inmersa.corsdev.co"]
 ADMINS = [('Jonathan Cortes', 'djcors@gmail.com')]
 
 
