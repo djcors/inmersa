@@ -5,6 +5,13 @@
     <meta charset="UTF-8">
     <title>Tienda</title>
     <link rel="stylesheet" href="/static/css/main.css">
+    {% if "/plato/" in request.META.PATH_INFO %}
+        <meta property="og:type" content="inmersa:plato">
+        <meta property="og:url" content="https://{{request.META.HTTP_HOST}}{{request.META.PATH_INFO}}" /> 
+        <meta property="og:title" content="{{platos.0.nombre}}" /> 
+        <meta property="og:image" content="{{platos.0.foto}}" />    
+        <meta property="og:description" content="{{platos.0.descripcion|safe|linebreaksbr}}" />
+    {% endif %}
 
 </head>
 <body>
